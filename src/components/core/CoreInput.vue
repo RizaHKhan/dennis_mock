@@ -8,5 +8,15 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-export default defineComponent({});
+export default defineComponent({
+  name: "CoreInput",
+  props: {
+    modelValue: {
+      type: String,
+      required: true,
+      default: "",
+    },
+  },
+  emits: ["update:modelValue"],
+});
 </script>
