@@ -16,3 +16,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss">
+img {
+  /* @include media-down(sm) { */
+  /*   border: solid 1px red; */
+  /* } */
+}
+</style>

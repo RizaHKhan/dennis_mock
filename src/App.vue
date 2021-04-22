@@ -1,10 +1,19 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <CoreLogo />
   </div>
   <router-view />
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import CoreLogo from "@/components/core/CoreLogo.vue";
+
+export default defineComponent({
+  name: "App",
+  components: { CoreLogo },
+});
+</script>
 
 <style lang="scss">
 #app {
@@ -16,7 +25,11 @@
 }
 
 #nav {
-  padding: 30px;
+  display: flex;
+
+  @include media-down(sm) {
+    border: solid 1px red;
+  }
 
   a {
     font-weight: bold;
