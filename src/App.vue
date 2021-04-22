@@ -1,6 +1,10 @@
 <template>
-  <div id="nav">
+  <div class="nav">
     <CoreLogo />
+    <div class="nav__signup">
+      <p class="hints">New user?</p>
+      <a>Sign up</a>
+    </div>
   </div>
   <router-view />
 </template>
@@ -17,26 +21,27 @@ export default defineComponent({
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  padding: 27px 32px;
+
+  @include media-down(md) {
+    padding: 10px;
+  }
 }
 
-#nav {
+.nav {
   display: flex;
+  justify-content: space-between;
 
-  @include media-down(sm) {
-    border: solid 1px red;
-  }
+  &__signup {
+    display: flex;
+    font-size: 16px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+    @include media-down(sm) {
+      font-size: 12px;
+    }
 
-    &.router-link-exact-active {
-      color: #42b983;
+    p {
+      margin-right: 5px;
     }
   }
 }
