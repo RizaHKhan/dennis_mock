@@ -75,6 +75,8 @@ export default defineComponent({
   &__core-input {
     height: 64px;
     border-width: 1px;
+    font-size: 18px;
+    padding: 24px;
   }
 
   &__errors {

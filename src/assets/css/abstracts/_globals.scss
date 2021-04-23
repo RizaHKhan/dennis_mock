@@ -104,3 +104,11 @@ a {
 .input-success {
   border: solid 1px $primary-blue;
 }
+
+.button-normal {
+  background-color: $primary-black;
+}
+
+.button-disabled {
+  background-color: $typography-hints;
+}

@@ -3,13 +3,14 @@
     class="core-button rounded"
     @click="emit('on-click')"
     :disabled="disabled"
+    :class="buttonWrapperClass"
   >
     {{ title }}
   </button>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 
 export default defineComponent({
   name: "CoreButton",
@@ -24,7 +25,14 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    return { emit };
+    const buttonWrapperClass = computed(() => {
+      return {
+        "button-disabled": props.disabled,
+        "button-normal": !props.disabled,
+      };
+    });
+
+    return { emit, buttonWrapperClass };
   },
   emits: ["on-click"],
 });

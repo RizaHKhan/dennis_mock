@@ -17,12 +17,12 @@
         <a>Forgot Password?</a>
       </div>
     </div>
-    <CoreButton />
+    <CoreButton :disabled="isSubmitDisabled" />
   </form>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import CoreInput from "../core/CoreInput.vue";
 import CoreButton from "../core/CoreButton.vue";
 import { useLoginForm } from "@/composables/login.ts";
@@ -36,6 +36,10 @@ export default defineComponent({
   setup() {
     const { userEmail, userPassword, v, handleBlur } = useLoginForm();
 
+    const isSubmitDisabled = computed(() => {
+      return v.value.userEmail.$error || v.value.userPassword.$error;
+    });
+
     const handleSubmit = () => {
       v.value.$touch();
 
@@ -48,7 +52,14 @@ export default defineComponent({
       console.log("validation failed");
     };
 
-    return { userEmail, userPassword, handleSubmit, handleBlur, v };
+    return {
+      userEmail,
+      userPassword,
+      handleSubmit,
+      handleBlur,
+      v,
+      isSubmitDisabled,
+    };
   },
 });
 </script>
