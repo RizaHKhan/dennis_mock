@@ -1,22 +1,29 @@
 <template>
-  <input
-    class="core-input rounded"
-    type="text"
-    :value="modelValue"
-    @input="emit('update:modelValue', $event.target.value)"
-    @blur="handleBlur"
-    :placeholder="placeholder"
-  />
+  <div class="input-container">
+    <input
+      class="input-container__core-input rounded"
+      type="text"
+      :value="modelValue"
+      @input="emit('update:modelValue', $event.target.value)"
+      @blur="handleBlur"
+      :class="inputWrapperClass"
+      :placeholder="placeholder"
+    />
 
-  <div class="errors" v-if="validationStatus.$error">
-    <p v-for="$error in validationStatus.$errors" :key="$error.$property">
-      {{ $error.$message }}
-    </p>
+    <div class="input-container__errors">
+      <p
+        class="input-container__errors--text-error text-error"
+        v-for="$error in validationStatus.$errors"
+        :key="$error.$property"
+      >
+        {{ $error.$message }}
+      </p>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 export default defineComponent({
   name: "CoreInput",
   props: {
@@ -39,16 +46,40 @@ export default defineComponent({
       emit("on-blur");
     };
 
-    return { handleBlur, emit };
+    const inputWrapperClass = computed(() => {
+      return {
+        "input-error": props.validationStatus.$errors.length,
+        "input-success": !props.validationStatus.$errors.length,
+      };
+    });
+
+    return { handleBlur, emit, inputWrapperClass };
   },
   emits: ["update:modelValue", "on-blur"],
 });
 </script>
 
 <style scoped lang="scss">
-.core-input {
-  max-width: 512px;
-  height: 64px;
-  border-width: 1px;
+.input-container {
+  display: grid;
+  grid-template-columns: 512px 1fr;
+
+  &__core-input {
+    width: 512px;
+    height: 64px;
+    border-width: 1px;
+  }
+
+  &__errors {
+    display: flex;
+    padding-right: 28px;
+
+    &--text-error {
+      text-align: left;
+      font-size: 14px;
+      margin: auto 0;
+      padding-left: 48px;
+    }
+  }
 }
 </style>

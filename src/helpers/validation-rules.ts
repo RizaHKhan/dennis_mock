@@ -6,8 +6,8 @@ const passwordError =
 
 const rules = {
   userEmail: {
-    email: helpers.withMessage("This is email is badly formatted", email),
-    required,
+    email: helpers.withMessage("This email is badly formatted", email),
+    required: helpers.withMessage("Email is required", required),
   },
   userPassword: {
     minLength: helpers.withMessage(passwordError, minLength(passwordMinLength)),
