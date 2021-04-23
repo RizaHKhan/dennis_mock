@@ -63,6 +63,10 @@ export default defineComponent({
 .row {
   display: flex;
   width: 100%;
+
+  @include media-down(md) {
+    flex-direction: column;
+  }
 }
 
 .forgot-password {
@@ -75,6 +79,11 @@ export default defineComponent({
 
   a {
     margin: auto 0;
+  }
+
+  @include media-down(md) {
+    margin-left: 0;
+    margin-top: 10px;
   }
 }
 </style>

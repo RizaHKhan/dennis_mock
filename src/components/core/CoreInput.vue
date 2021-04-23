@@ -64,8 +64,15 @@ export default defineComponent({
   display: grid;
   grid-template-columns: 512px 1fr;
 
+  @include media-down(lg) {
+    grid-template-columns: 300px 1fr;
+  }
+
+  @include media-down(md) {
+    grid-template-columns: 1fr;
+  }
+
   &__core-input {
-    width: 512px;
     height: 64px;
     border-width: 1px;
   }
@@ -79,6 +86,11 @@ export default defineComponent({
       font-size: 14px;
       margin: auto 0;
       padding-left: 48px;
+
+      @include media-down(md) {
+        margin-top: 10px;
+        padding-left: 0;
+      }
     }
   }
 }

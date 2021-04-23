@@ -19,7 +19,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .login {
-  margin: auto 0;
+  margin: auto;
+  max-width: 80%;
+
+  @include media-down(lg) {
+    max-width: 100%;
+  }
 
   &__title {
     font-size: 48px;
