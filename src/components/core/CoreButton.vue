@@ -1,5 +1,9 @@
 <template>
-  <button class="core-button rounded" @click="handleClick" :disabled="disabled">
+  <button
+    class="core-button rounded"
+    @click="emit('on-click')"
+    :disabled="disabled"
+  >
     {{ title }}
   </button>
 </template>
@@ -20,11 +24,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const handleClick = () => {
-      emit("on-click");
-    };
-
-    return { handleClick };
+    return { emit };
   },
   emits: ["on-click"],
 });

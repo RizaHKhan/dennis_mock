@@ -1,6 +1,8 @@
 import { email, required, minLength, helpers } from "@vuelidate/validators";
 
 const passwordMinLength = 5;
+const passwordError =
+  "The password is invalid or the user doesn't have a password";
 
 const rules = {
   userEmail: {
@@ -8,11 +10,8 @@ const rules = {
     required,
   },
   userPassword: {
-    minLength: helpers.withMessage(
-      "The password is invalid or the user doesn't have a password",
-      minLength(passwordMinLength)
-    ),
-    required,
+    minLength: helpers.withMessage(passwordError, minLength(passwordMinLength)),
+    required: helpers.withMessage(passwordError, required),
   },
 };
 

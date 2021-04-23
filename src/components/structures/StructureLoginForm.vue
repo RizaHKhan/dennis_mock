@@ -1,17 +1,23 @@
 <template>
   <form class="form" @submit.prevent="handleSubmit">
+    <CoreInput
+      v-model="userEmail"
+      placeholder="Email"
+      @on-blur="handleBlur('userEmail')"
+      :validationStatus="v.userEmail"
+    />
     <div class="row">
-      <CoreInput />
-    </div>
-    <div class="row">
-      <CoreInput />
+      <CoreInput
+        v-model="userPassword"
+        placeholder="Password"
+        @on-blur="handleBlur('userPassword')"
+        :validationStatus="v.userPassword"
+      />
       <div class="forgot-password">
         <a>Forgot Password?</a>
       </div>
     </div>
-    <div class="row">
-      <CoreButton />
-    </div>
+    <CoreButton />
   </form>
 </template>
 
@@ -35,13 +41,14 @@ export default defineComponent({
 
       if (!v.value.userEmail.$error && !v.value.userPassword.$error) {
         // emit value to view page and route to new page
+        console.log("do something nice");
         return;
       }
 
       console.log("validation failed");
     };
 
-    return { userEmail, userPassword, handleSubmit };
+    return { userEmail, userPassword, handleSubmit, handleBlur, v };
   },
 });
 </script>

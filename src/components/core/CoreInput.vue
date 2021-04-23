@@ -3,8 +3,16 @@
     class="core-input rounded"
     type="text"
     :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
+    @input="emit('update:modelValue', $event.target.value)"
+    @blur="handleBlur"
+    :placeholder="placeholder"
   />
+
+  <div class="errors" v-if="validationStatus.$error">
+    <p v-for="$error in validationStatus.$errors" :key="$error.$property">
+      {{ $error.$message }}
+    </p>
+  </div>
 </template>
 
 <script lang="ts">
@@ -17,8 +25,23 @@ export default defineComponent({
       required: true,
       default: "",
     },
+    placeholder: {
+      type: String,
+      default: "",
+    },
+    validationStatus: {
+      type: Object,
+      required: true,
+    },
   },
-  emits: ["update:modelValue"],
+  setup(props, { emit }) {
+    const handleBlur = () => {
+      emit("on-blur");
+    };
+
+    return { handleBlur, emit };
+  },
+  emits: ["update:modelValue", "on-blur"],
 });
 </script>
 

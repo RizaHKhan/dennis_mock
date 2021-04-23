@@ -15,4 +15,15 @@ describe("CoreInput", () => {
     expect(wrapper.emitted("update:modelValue")).toBeTruthy();
     expect(wrapper.emitted("update:modelValue")).toEqual([["123"]]);
   });
+
+  it("should emit an event on blur", async () => {
+    const wrapper = mount(CoreInput, {
+      props: {
+        modelValue: "name",
+      },
+    });
+
+    wrapper.find("input").trigger("blur");
+    expect(wrapper.emitted("on-blur")).toBeTruthy();
+  });
 });
