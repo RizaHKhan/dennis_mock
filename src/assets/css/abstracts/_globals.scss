@@ -10,6 +10,45 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+a {
+  color: $primary-blue;
+
+  &:hover {
+    cursor: pointer;
+    color: $primary-blue
+  }
+}
+
+.heading-lg {
+  font-size: 74px;
+  line-height: 68px;
+}
+
+.heading-reg {
+  font-size: 56px;
+  line-height: 68px;
+}
+
+.heading-med {
+  font-size: 48px;
+  line-height: 56px;
+}
+
+.heading-sm {
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.p-reg {
+  font-size: 22px;
+  line-height: 34px;
+}
+
+.p-sm {
+  font-size: 14px;
+  line-height: 20px;
+}
+
 .title, h1 {
   color: $typography-titles;
 }
@@ -38,3 +77,18 @@ body {
   background-color: $notifications-warning;
 }
 
+.rounded {
+  border-radius: $border-radius;
+}
+
+.primary {
+  color: $primary-blue;
+}
+
+.button-md {
+  height: 48px;
+}
+
+.button-lg {
+  height: 56px;
+}
