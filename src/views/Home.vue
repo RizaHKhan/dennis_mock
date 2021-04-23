@@ -1,5 +1,8 @@
 <template>
-  <div class="home"></div>
+  <div class="home">
+    <h1 class="heading-lg">Congrats! You are now logged in!</h1>
+    <p>Refresh the page to clear store and logout!</p>
+  </div>
 </template>
 
 <script lang="ts">
@@ -11,10 +14,9 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-img {
-  /* @include media-down(sm) { */
-  /*   border: solid 1px red; */
-  /* } */
+<style lang="scss" scoped>
+.home {
+  margin: auto;
+  text-align: center;
 }
 </style>

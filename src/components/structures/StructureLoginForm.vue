@@ -13,7 +13,10 @@
         @on-blur="handleBlur('userPassword')"
         :validationStatus="v.userPassword"
       />
-      <div class="forgot-password">
+      <div
+        class="forgot-password"
+        :class="passwordHasErrors ? 'border-left' : ''"
+      >
         <a>Forgot Password?</a>
       </div>
     </div>
@@ -26,6 +29,8 @@ import { defineComponent, computed } from "vue";
 import CoreInput from "../core/CoreInput.vue";
 import CoreButton from "../core/CoreButton.vue";
 import { useLoginForm } from "@/composables/login.ts";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "StructureLoginForm",
@@ -36,8 +41,15 @@ export default defineComponent({
   setup() {
     const { userEmail, userPassword, v, handleBlur } = useLoginForm();
 
+    const store = useStore();
+    const { push } = useRouter();
+
     const isSubmitDisabled = computed(() => {
       return v.value.userEmail.$error || v.value.userPassword.$error;
+    });
+
+    const passwordHasErrors = computed(() => {
+      return v.value.userPassword.$error;
     });
 
     const handleSubmit = () => {
@@ -45,7 +57,8 @@ export default defineComponent({
 
       if (!v.value.userEmail.$error && !v.value.userPassword.$error) {
         // emit value to view page and route to new page
-        console.log("do something nice");
+        store.commit("logIn", true);
+        push({ name: "Home" });
         return;
       }
 
@@ -59,6 +72,7 @@ export default defineComponent({
       handleBlur,
       v,
       isSubmitDisabled,
+      passwordHasErrors,
     };
   },
 });
@@ -96,5 +110,9 @@ export default defineComponent({
     margin-left: 0;
     margin-top: 10px;
   }
+}
+.border-left {
+  border-left: 1px solid #d6d6d6;
+  padding-left: 28px;
 }
 </style>

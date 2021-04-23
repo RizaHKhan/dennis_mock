@@ -50,6 +50,10 @@ export default defineComponent({
     p {
       margin-right: 5px;
     }
+
+    a {
+      color: black;
+    }
   }
 }
 </style>

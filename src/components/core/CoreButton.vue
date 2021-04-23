@@ -45,5 +45,13 @@ export default defineComponent({
   border: 0;
   color: #fff;
   font-size: 18px;
+
+  @include media-down(lg) {
+    max-width: 300px;
+  }
+
+  @include media-down(md) {
+    max-width: 100%;
+  }
 }
 </style>
