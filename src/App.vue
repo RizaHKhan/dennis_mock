@@ -7,6 +7,8 @@
     </div>
   </div>
   <router-view />
+  <!-- empty div on purpose -->
+  <div></div>
 </template>
 
 <script lang="ts">
@@ -21,11 +23,16 @@ export default defineComponent({
 
 <style lang="scss">
 #app {
+  min-height: 100vh;
   padding: 27px 32px;
 
   @include media-down(md) {
     padding: 10px;
   }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .nav {
