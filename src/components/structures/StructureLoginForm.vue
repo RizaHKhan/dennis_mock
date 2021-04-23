@@ -1,5 +1,5 @@
 <template>
-  <form class="form">
+  <form class="form" @submit.prevent="handleSubmit">
     <div class="row">
       <CoreInput />
     </div>
@@ -19,12 +19,29 @@
 import { defineComponent } from "vue";
 import CoreInput from "../core/CoreInput.vue";
 import CoreButton from "../core/CoreButton.vue";
+import { useLoginForm } from "@/composables/login.ts";
 
 export default defineComponent({
   name: "StructureLoginForm",
   components: {
     CoreInput,
     CoreButton,
+  },
+  setup() {
+    const { userEmail, userPassword, v, handleBlur } = useLoginForm();
+
+    const handleSubmit = () => {
+      v.value.$touch();
+
+      if (!v.value.userEmail.$error && !v.value.userPassword.$error) {
+        // emit value to view page and route to new page
+        return;
+      }
+
+      console.log("validation failed");
+    };
+
+    return { userEmail, userPassword, handleSubmit };
   },
 });
 </script>
