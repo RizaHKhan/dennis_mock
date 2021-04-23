@@ -10,7 +10,7 @@
       :placeholder="placeholder"
     />
 
-    <div class="input-container__errors">
+    <div class="input-container__errors" :class="{ 'has-errors': hasErrors }">
       <p
         class="input-container__errors--text-error text-error"
         v-for="$error in validationStatus.$errors"
@@ -53,7 +53,11 @@ export default defineComponent({
       };
     });
 
-    return { handleBlur, emit, inputWrapperClass };
+    const hasErrors = computed(() => {
+      return !!props.validationStatus.$errors.length;
+    });
+
+    return { handleBlur, emit, inputWrapperClass, hasErrors };
   },
   emits: ["update:modelValue", "on-blur"],
 });
@@ -77,11 +81,20 @@ export default defineComponent({
     border-width: 1px;
     font-size: 18px;
     padding: 24px;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &__errors {
     display: flex;
     padding-right: 28px;
+    width: 0px;
+    opacity: 0;
+    height: 0px;
+    overflow: hidden;
+    transition: all 0.5s ease;
 
     &--text-error {
       text-align: left;
@@ -95,5 +108,11 @@ export default defineComponent({
       }
     }
   }
+}
+
+.has-errors {
+  width: 275px;
+  height: 60px;
+  opacity: 1;
 }
 </style>
