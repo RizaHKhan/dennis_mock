@@ -1,5 +1,6 @@
 <template>
   <input
+    class="core-input rounded"
     type="text"
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
@@ -20,3 +21,11 @@ export default defineComponent({
   emits: ["update:modelValue"],
 });
 </script>
+
+<style scoped lang="scss">
+.core-input {
+  max-width: 512px;
+  height: 64px;
+  border-width: 1px;
+}
+</style>
