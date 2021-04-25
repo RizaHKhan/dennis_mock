@@ -40,7 +40,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .core-button {
-  max-width: 512px;
+  max-width: 412px;
   height: 64px;
   border: 0;
   color: #fff;

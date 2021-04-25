@@ -66,7 +66,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .input-container {
   display: grid;
-  grid-template-columns: 512px 1fr;
+  grid-template-columns: 412px 1fr;
 
   @include media-down(lg) {
     grid-template-columns: 300px 1fr;
