@@ -102,8 +102,16 @@ export default defineComponent({
   text-justify: center;
   margin-left: 48px;
 
+  @include media-down(md) {
+    width: 100%;
+  }
+
   a {
     margin: auto 0;
+
+    @include media-down(md) {
+      margin: auto;
+    }
   }
 
   @include media-down(md) {
@@ -114,5 +122,14 @@ export default defineComponent({
 .border-left {
   border-left: 1px solid #d6d6d6;
   padding-left: 28px;
+
+  @include media-down(md) {
+    width: 100%;
+    border-top: 1px solid #d6d6d6;
+    border-left: 0;
+    padding-left: 0;
+    padding-top: 10px;
+    text-align: center;
+  }
 }
 </style>

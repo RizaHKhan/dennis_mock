@@ -114,5 +114,9 @@ export default defineComponent({
   width: 275px;
   height: 60px;
   opacity: 1;
+
+  @include media-down(md) {
+    max-height: 50px;
+  }
 }
 </style>
